@@ -36,14 +36,12 @@ public class Register {
         driver.findElement(lastName).sendKeys(data[2]);
 
         Select Day = new Select(driver.findElement(dateOfBirthDay));
-//        String dobDay = (data[3]).substring(0, (data[3]).indexOf("."));
         Day.selectByVisibleText(data[3]);
 
         Select Month = new Select(driver.findElement(dateOfBirthMonth));
         Month.selectByVisibleText(data[4]);
 
         Select Year = new Select(driver.findElement(dateOfBirthYear));
-//        String dobYear = (data[5]).substring(0, (data[5]).indexOf("."));
         Year.selectByVisibleText(data[5]);
 
         driver.findElement(email).sendKeys(data[6]);
