@@ -25,7 +25,7 @@ public class Base {
         driver.quit();
     }
 
-    @BeforeTest
+//    @BeforeTest
     public void login(){
         driver.findElement(By.xpath("//a[@class='ico-login']")).click();
 
