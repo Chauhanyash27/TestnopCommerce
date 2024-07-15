@@ -8,16 +8,17 @@ import org.testng.Assert;
 public class ProductDetail {
 
     WebDriver driver;
-    By particularProduct = By.xpath("//div[@data-productid=\"1\"]");
+    By particularProduct = By.xpath("//div[@data-productid=\"18\"]");
     By writeReviewSection = By.xpath("//div[@class=\"form-fields\"]");
     By reviewTitle = By.xpath("//input[@class=\"review-title\"]");
     By reviewText = By.xpath("//textarea[@class=\"review-text\"]");
-    By rating = By.xpath("//input[@value=\"5\"]");
     By submitReviewButton = By.xpath("//button[@name=\"add-review\"]");
     By reviewAddedValidation = By.xpath("//*[@id=\"bar-notification\"]/div/p");
+    By addToWishlistIcon = By.xpath("//div[@data-productid=\"18\"]//button[@title=\"Add to wishlist\"]");
+    By addToWishlistValidation = By.xpath("//p[@class=\"content\"]");
 
     public ProductDetail(WebDriver driver){
-        this.driver= driver;
+        this.driver = driver;
     }
 
     public void writeReview(String[] data){
@@ -31,5 +32,13 @@ public class ProductDetail {
 
         String validationText=driver.findElement(reviewAddedValidation).getText();
         Assert.assertEquals("Product review is successfully added.",validationText);
+    }
+
+    public void checkAddToWishlistValidation(){
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(addToWishlistIcon)).click().perform();
+        Assert.assertTrue(driver.findElement(addToWishlistValidation).isDisplayed());
+        String addToWishlistValidationText = driver.findElement(addToWishlistValidation).getText();
+        Assert.assertEquals(addToWishlistValidationText,"The product has been added to your wishlist");
     }
 }

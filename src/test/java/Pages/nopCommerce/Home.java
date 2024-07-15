@@ -36,7 +36,7 @@ public class Home {
         int categoriesCount = driver.findElements(headerMenu).size();
 
         for (int i = 1; i <= categoriesCount; i++) {
-            Thread.sleep(3000);
+            Thread.sleep(1000);
             WebElement Category = driver.findElement(By.xpath("//ul[@class=\"top-menu notmobile\"]/li[" + i + "]/a"));
 
             Categories currentCategory = Categories.valueOf(Category.getText().replaceAll(" ", ""));
@@ -57,19 +57,19 @@ public class Home {
         for (int i = 1; i <= 3; i++) {
             int subcategoryCount = driver.findElements(By.xpath("//ul[@class=\"top-menu notmobile\"]/li[" + i + "]/ul/li/a")).size();
             for (int j = 1; j <= subcategoryCount; j++) {
-                Thread.sleep(3000);
+                Thread.sleep(1000);
                 WebElement categoryHover = driver.findElement(By.xpath("//ul[@class=\"top-menu notmobile\"]/li[" + i + "]"));
                 action.moveToElement(categoryHover).perform();
 
                 WebElement SubCategory = driver.findElement(By.xpath("//ul[@class=\"top-menu notmobile\"]/li[" + i + "]/ul/li[" + j + "]/a"));
-                SubCategories currentSubCategory = SubCategories.valueOf(SubCategory.getText().replaceAll(" ", ""));
+                SubCategories currentSubCategory = SubCategories.valueOf(SubCategory.getText().replaceAll(" ", "").replaceAll("&",""));
                 String expectedSubCategory = currentSubCategory.getSubCategories();
                 SubCategory.click();
 
                 WebElement titleText = driver.findElement(categoryHeading);
                 String actualSubCategory = titleText.getText();
 
-                Assert.assertEquals(expectedSubCategory, actualSubCategory);
+                Assert.assertEquals(actualSubCategory,expectedSubCategory);
 
             }
         }

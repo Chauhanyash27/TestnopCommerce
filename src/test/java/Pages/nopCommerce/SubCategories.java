@@ -4,7 +4,7 @@ public enum SubCategories {
     Desktops("Desktops"),
     Notebooks("Notebooks"),
     Software("Software"),
-    Camera_photo("Camera & Photo"),
+    Cameraphoto("Camera & photo"),
     Cellphones("Cell phones"),
     Others("Others"),
     Shoes("Shoes"),
