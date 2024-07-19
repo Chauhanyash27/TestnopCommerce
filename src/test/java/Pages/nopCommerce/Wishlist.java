@@ -51,9 +51,9 @@ public class Wishlist {
         int productQuantity = random.nextInt(2,10);
         driver.findElement(QtyField).sendKeys(Integer.toString(productQuantity));
         driver.findElement(updateWishlistButton).click();
-        Double productSingleUnitPrice= Double.parseDouble(driver.findElement(productPrice).getText().replaceAll("[$,]",""));
+        Double productSingleUnitPrice= Double.parseDouble(driver.findElement(productPrice).getText().replaceAll("[$,€]",""));
         Double expectedTotalPrice = productSingleUnitPrice*productQuantity;
-        Double actualTotalPrice= Double.parseDouble(driver.findElement(totalPrice).getText().replaceAll("[$,]",""));
+        Double actualTotalPrice= Double.parseDouble(driver.findElement(totalPrice).getText().replaceAll("[$,€]",""));
         Assert.assertEquals(actualTotalPrice,expectedTotalPrice);
     }
 

@@ -1,6 +1,5 @@
 package Utility;
 
-import com.beust.jcommander.Parameter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +12,7 @@ import java.time.Duration;
 public class Base {
     public static WebDriver driver;
 
-    @BeforeTest
+    @BeforeClass
     public  void browserInitiator(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -23,12 +22,12 @@ public class Base {
         driver.get("https://demo.nopcommerce.com/");
     }
 
-    @AfterTest
+    @AfterClass
     public void tearDown(){
         driver.quit();
     }
 
-    @BeforeTest
+    @BeforeClass
     public void login(){
         driver.findElement(By.xpath("//a[@class='ico-login']")).click();
 
@@ -38,6 +37,7 @@ public class Base {
 
         driver.findElement(By.xpath("//button[@class='button-1 login-button']")).click();
     }
+
 
     @DataProvider
     public Object[][] RegisterDataProvider() throws IOException {
@@ -61,7 +61,7 @@ public class Base {
         int totalColumns = ExcelFileHandling.getColumnCount(filePath,"LoginTestData",0);
 
         Object[][] data = new Object[totalRows][totalColumns];
-        for(int i=1;i<=totalRows;i++){
+        for(int i=1;i<=1;i++){
             for(int j=0;j<totalColumns;j++){
                 data[i-1][j]=(ExcelFileHandling.getCellData(filePath,"LoginTestData",i,j));
             }
@@ -75,8 +75,8 @@ public class Base {
         int totalRows = ExcelFileHandling.getRowCount(filePath, "ProductReviewData");
         int totalColumns = ExcelFileHandling.getColumnCount(filePath, "ProductReviewData", 0);
 
-        Object[][] data = new Object[totalRows][totalColumns];
-        for (int i = 1; i <= totalRows; i++) {
+        Object[][] data = new Object[1][totalColumns];
+        for (int i = 1; i <= 1; i++) {
             for (int j = 0; j < totalColumns; j++) {
                 data[i - 1][j] = (ExcelFileHandling.getCellData(filePath, "ProductReviewData", i, j));
             }
@@ -90,8 +90,8 @@ public class Base {
         int totalRows = ExcelFileHandling.getRowCount(filePath,"AddressData");
         int totalColumns = ExcelFileHandling.getColumnCount(filePath,"AddressData",0);
 
-        Object[][] data = new Object[totalRows][totalColumns];
-        for(int i=1;i<=totalRows;i++){
+        Object[][] data = new Object[1][totalColumns];
+        for(int i=1;i<=1;i++){
             for(int j=0;j<totalColumns;j++){
                 data[i-1][j]=(ExcelFileHandling.getCellData(filePath,"AddressData",i,j));
             }

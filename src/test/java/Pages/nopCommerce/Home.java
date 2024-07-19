@@ -82,7 +82,6 @@ public class Home {
             char productCurrency = webElement.getText().charAt(0);
             double actualProductPrice = Double.parseDouble(webElement.getText().substring(1));
             double expectedProductPrice = actualProductPrice / 0.86;
-            System.out.println(actualProductPrice + "  " + expectedProductPrice);
             Assert.assertEquals('€', productCurrency);
             Assert.assertEquals(expectedProductPrice, (actualProductPrice / 0.86));
         }

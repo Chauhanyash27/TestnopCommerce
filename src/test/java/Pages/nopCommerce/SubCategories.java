@@ -6,7 +6,7 @@ public enum SubCategories {
     Software("Software"),
     Cameraphoto("Camera & photo"),
     Cellphones("Cell phones"),
-    Others("Others"),
+    Others("Others12"),
     Shoes("Shoes"),
     Clothing("Clothing"),
     Accessories("Accessories");

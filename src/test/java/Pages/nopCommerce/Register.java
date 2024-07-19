@@ -1,7 +1,9 @@
 package Pages.nopCommerce;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 public class Register {
 
@@ -19,7 +21,7 @@ public class Register {
     By confirmPassword = By.xpath("//*[@id='ConfirmPassword']");
     By registerButton = By.xpath("//button[@id='register-button']");
     By logoutNavItem = By.xpath("//a[@class='ico-logout']");
-
+    By registerSuccess = By.xpath("//div[@class=\"result\"]");
 
     public Register( WebDriver driver){
         this.driver = driver;
@@ -54,7 +56,11 @@ public class Register {
 
         driver.findElement(registerButton).click();
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
+
+        String actualRegisterConfirmed = driver.findElement(registerSuccess).getText();
+
+        Assert.assertEquals(actualRegisterConfirmed,"Your registration completed");
 
         driver.findElement(logoutNavItem).click();
     }

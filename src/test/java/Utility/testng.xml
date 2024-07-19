@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Parallel test suite"  parallel="tests" thread-count="2" >
-    <test name="Parallel Test Execution" >
+<suite name="NopCommerce"  >
+    <listeners>
+        <listener class-name="Utility.ExtentReportListener" />
+    </listeners>
+    <test name="Nop Commerce Website Testing" >
         <classes>
-            <class name="Test.paralleltest1" />
-        </classes>
-    </test>
-    <test name="Parallel Test Execution1" >
-        <classes>
-            <class name="Test.parallelTest2" />
+            <class name="Test.NC_003_Home_VerifyCategoryNavigation" />
+            <class name="Test.NC_004_Home_VerifySubCategoryNavigation" />
+            <class name="Test.NC_005_ProductDetail_VerifyProductReviewGettingAdded" />
+            <class name="Test.NC_006_MyAccount_VerifyMyAccountListNavigation" />
+            <class name="Test.NC_007_MyAccount_VerifyAddressGettingAdded" />
+            <class name="Test.NC_008_Home_VerifyProductPriceVariationWithCurrency" />
+            <class name="Test.NC_009_ProductDisplay_VerifySortingFunctionality" />
+            <class name="Test.NC_010_VerifyAddToWishlistValidationBeingDisplayed" />
+            <class name="Test.NC_011_VerifyWishlistPageDisplaysAllProductDetail" />
+            <class name="Test.NC_012_VerifyTotalProductPriceVaryingWithProductQuantity" />
+            <class name="Test.NC_013_VerifyThatTheProductIsGettingRemovedFromWishlist" />
+            <class name="Test.NC_014_VerifyProductGettingAddedFromWishlistToCart" />
         </classes>
     </test>
 </suite>

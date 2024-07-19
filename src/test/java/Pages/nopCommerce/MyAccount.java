@@ -41,7 +41,6 @@ public class MyAccount extends Login{
     public void myAccountListNavigation() throws InterruptedException {
         int accountListCount = driver.findElements(myAccountList).size();
         for (int i = 1; i <= accountListCount; i++) {
-            Thread.sleep(3000);
             driver.findElement(By.xpath("//div[@class='listbox']//ul//li[" + i + "]//a")).click();
         }
     }
@@ -72,7 +71,7 @@ public class MyAccount extends Login{
         String actualValidationText = driver.findElement(addressAddedValidation).getText();
         String expectedValidationText= "The new address has been added successfully.";
         Assert.assertEquals(expectedValidationText,actualValidationText);
-        Thread.sleep(3000);
+        Thread.sleep(1000);
     }
 
 }
