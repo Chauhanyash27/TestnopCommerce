@@ -13,5 +13,4 @@ public class NC_001_Register_VerifyUserRegistration extends Base {
         obj_UserRegistration = new Register(driver);
         obj_UserRegistration.userRegister(data);
     }
-
 }

@@ -2,13 +2,11 @@ package Pages.nopCommerce;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 public class MyAccount extends Login{
+
     WebDriver driver;
     By myAccountNavItem = By.xpath("//a[@class=\"ico-account\"]");
     By myAccountList = By.xpath("//div[@class=\"listbox\"]//ul//li");
@@ -65,13 +63,10 @@ public class MyAccount extends Login{
         driver.findElement(address_ZipCode).sendKeys(data[8]);
         driver.findElement(address_PhoneNumber).sendKeys(data[9]);
         driver.findElement(address_SaveButton).click();
-
         driver.findElement(notificationClose).click();
-
         String actualValidationText = driver.findElement(addressAddedValidation).getText();
         String expectedValidationText= "The new address has been added successfully.";
         Assert.assertEquals(expectedValidationText,actualValidationText);
         Thread.sleep(1000);
     }
-
 }

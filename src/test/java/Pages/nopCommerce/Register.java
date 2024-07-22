@@ -30,11 +30,8 @@ public class Register {
     public void userRegister(String[] data) throws InterruptedException {
 
         driver.findElement(registerNavItem).click();
-
         driver.findElement(gender).click();
-
         driver.findElement(firstName).sendKeys(data[1]);
-
         driver.findElement(lastName).sendKeys(data[2]);
 
         Select Day = new Select(driver.findElement(dateOfBirthDay));
@@ -47,17 +44,11 @@ public class Register {
         Year.selectByVisibleText(data[5]);
 
         driver.findElement(email).sendKeys(data[6]);
-
         driver.findElement(companyName).sendKeys(data[7]);
-
         driver.findElement(password).sendKeys(data[8]);
-
         driver.findElement(confirmPassword).sendKeys(data[9]);
-
         driver.findElement(registerButton).click();
-
         Thread.sleep(1000);
-
         String actualRegisterConfirmed = driver.findElement(registerSuccess).getText();
 
         Assert.assertEquals(actualRegisterConfirmed,"Your registration completed");

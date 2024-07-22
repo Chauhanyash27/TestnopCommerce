@@ -5,6 +5,7 @@ import Utility.Base;
 import org.testng.annotations.Test;
 
 public class NC_008_Home_VerifyProductPriceVariationWithCurrency extends Base {
+
     Home obj_CurrencyChange;
 
     @Test

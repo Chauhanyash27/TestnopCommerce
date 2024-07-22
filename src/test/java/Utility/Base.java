@@ -11,6 +11,10 @@ import java.time.Duration;
 
 public class Base {
     public static WebDriver driver;
+    By loginNavItem = By.xpath("//a[@class='ico-login']");
+    By emailField = By.xpath("//input[@class='email']");
+    By passwordField = By.xpath("//input[@class='password']");
+    By loginButton = By.xpath("//button[@class='button-1 login-button']");
 
     @BeforeClass
     public  void browserInitiator(){
@@ -18,7 +22,7 @@ public class Base {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-
+        driver.manage().deleteAllCookies();
         driver.get("https://demo.nopcommerce.com/");
     }
 
@@ -29,19 +33,15 @@ public class Base {
 
     @BeforeClass
     public void login(){
-        driver.findElement(By.xpath("//a[@class='ico-login']")).click();
-
-        driver.findElement(By.xpath("//input[@class='email']")).sendKeys("yash1@mailinator.com");
-
-        driver.findElement(By.xpath("//input[@class='password']")).sendKeys("password");
-
-        driver.findElement(By.xpath("//button[@class='button-1 login-button']")).click();
+        driver.findElement(loginNavItem).click();
+        driver.findElement(emailField).sendKeys("yash1@mailinator.com");
+        driver.findElement(passwordField).sendKeys("password");
+        driver.findElement(loginButton).click();
     }
-
 
     @DataProvider
     public Object[][] RegisterDataProvider() throws IOException {
-        String filePath = System.getProperty("user.dir") + "\\src\\Utility\\DataFile.xlsx";
+        String filePath = System.getProperty("user.dir") + "\\src\\Test Data\\DataFile.xlsx";
         int totalRows = ExcelFileHandling.getRowCount(filePath,"RegisterTestData");
         int totalColumns = ExcelFileHandling.getColumnCount(filePath,"RegisterTestData",0);
 
@@ -56,7 +56,7 @@ public class Base {
 
     @DataProvider
     public Object[][] LoginDataProvider() throws IOException {
-        String filePath = System.getProperty("user.dir") + "\\src\\Utility\\DataFile.xlsx";
+        String filePath = System.getProperty("user.dir") + "\\src\\Test Data\\DataFile.xlsx";
         int totalRows = ExcelFileHandling.getRowCount(filePath,"LoginTestData");
         int totalColumns = ExcelFileHandling.getColumnCount(filePath,"LoginTestData",0);
 
@@ -71,7 +71,7 @@ public class Base {
 
     @DataProvider
     public Object[][] ProductReviewDataProvider() throws IOException {
-        String filePath = System.getProperty("user.dir") + "\\src\\Utility\\DataFile.xlsx";
+        String filePath = System.getProperty("user.dir") + "\\src\\Test Data\\DataFile.xlsx";
         int totalRows = ExcelFileHandling.getRowCount(filePath, "ProductReviewData");
         int totalColumns = ExcelFileHandling.getColumnCount(filePath, "ProductReviewData", 0);
 
@@ -86,7 +86,7 @@ public class Base {
 
     @DataProvider
     public Object[][] AddressDataProvider() throws IOException {
-        String filePath = System.getProperty("user.dir") + "\\src\\Utility\\DataFile.xlsx";
+        String filePath = System.getProperty("user.dir") + "\\src\\Test Data\\DataFile.xlsx";
         int totalRows = ExcelFileHandling.getRowCount(filePath,"AddressData");
         int totalColumns = ExcelFileHandling.getColumnCount(filePath,"AddressData",0);
 

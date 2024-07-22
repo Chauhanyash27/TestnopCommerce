@@ -15,7 +15,6 @@ import static Utility.Base.driver;
 
 public class ExtentReportListener implements ITestListener  {
 
-
     public ExtentReports extentReports;
     public ExtentSparkReporter sparkReporter;
     public ExtentTest extentTest;

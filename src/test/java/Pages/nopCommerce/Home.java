@@ -7,7 +7,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +22,6 @@ public class Home {
     By sortByOptions = By.xpath("//select[@id=\"products-orderby\"]");
     By getproductDetail;
 
-
     ArrayList<String> data = new ArrayList<>();
     ArrayList<Double> intData = new ArrayList<>();
 
@@ -34,15 +32,12 @@ public class Home {
     public void CategoryNavigation() throws InterruptedException {
 
         int categoriesCount = driver.findElements(headerMenu).size();
-
         for (int i = 1; i <= categoriesCount; i++) {
             Thread.sleep(1000);
             WebElement Category = driver.findElement(By.xpath("//ul[@class=\"top-menu notmobile\"]/li[" + i + "]/a"));
-
             Categories currentCategory = Categories.valueOf(Category.getText().replaceAll(" ", ""));
             String expectedCategory = currentCategory.getCategories();
             Category.click();
-
             WebElement titleText = driver.findElement(categoryHeading);
             String actualCategory = titleText.getText();
 
@@ -53,29 +48,26 @@ public class Home {
     public void SubCategoryNavigation() throws InterruptedException {
 
         Actions action = new Actions(driver);
-
         for (int i = 1; i <= 3; i++) {
             int subcategoryCount = driver.findElements(By.xpath("//ul[@class=\"top-menu notmobile\"]/li[" + i + "]/ul/li/a")).size();
             for (int j = 1; j <= subcategoryCount; j++) {
                 Thread.sleep(1000);
                 WebElement categoryHover = driver.findElement(By.xpath("//ul[@class=\"top-menu notmobile\"]/li[" + i + "]"));
                 action.moveToElement(categoryHover).perform();
-
                 WebElement SubCategory = driver.findElement(By.xpath("//ul[@class=\"top-menu notmobile\"]/li[" + i + "]/ul/li[" + j + "]/a"));
                 SubCategories currentSubCategory = SubCategories.valueOf(SubCategory.getText().replaceAll(" ", "").replaceAll("&",""));
                 String expectedSubCategory = currentSubCategory.getSubCategories();
                 SubCategory.click();
-
                 WebElement titleText = driver.findElement(categoryHeading);
                 String actualSubCategory = titleText.getText();
 
                 Assert.assertEquals(actualSubCategory,expectedSubCategory);
-
             }
         }
     }
 
     public void CurrencyChange() {
+
         driver.findElement(selectCurrency).click();
         List<WebElement> featuredProductList = driver.findElements(featuredProducts);
         for (WebElement webElement : featuredProductList) {
@@ -87,45 +79,8 @@ public class Home {
         }
     }
 
-    public void SortingFunctionality(String selection) throws InterruptedException {
-        int a = 0;
-        if (selection.equals("Name")) {
-            getproductDetail = getProductTitle;
-            a = 2;
-        }
-        if (selection.equals("Price")){
-            getproductDetail = getProductPrice;
-            a = 4;
-        }
-
-        Actions action = new Actions(driver);
-        for (int z = a; z < (a + 2); z++) {
-            for (int i = 1; i <= 3; i++) {
-                int subcategoryCount = driver.findElements(By.xpath("//ul[@class=\"top-menu notmobile\"]/li[" + i + "]/ul/li/a")).size();
-                for (int j = 1; j <= subcategoryCount; j++) {
-                    WebElement categoryHover = driver.findElement(By.xpath("//ul[@class=\"top-menu notmobile\"]/li[" + i + "]"));
-                    action.moveToElement(categoryHover).perform();
-
-                    WebElement SubCategory = driver.findElement(By.xpath("//ul[@class=\"top-menu notmobile\"]/li[" + i + "]/ul/li[" + j + "]/a"));
-                    SubCategory.click();
-                    driver.findElement(By.xpath("//*[@id='products-orderby']/option[" + z + "]")).click();
-                    Thread.sleep(3000);
-
-                    List<WebElement> productTitleList = driver.findElements(getproductDetail);
-                    for (WebElement element : productTitleList) {
-                        String title = element.getText();
-                        data.add(title);
-                    }
-                    SoftAssert softAssert = new SoftAssert();
-                    softAssert.assertTrue(SortingComparator(data,"Name"));
-                    data.clear();
-                }
-            }
-        }
-    }
-
-
     public boolean SortingComparator(ArrayList<String> data, String selection){
+
         intData.clear();
         boolean isSorted = true;
         if(data.getFirst().charAt(0)!='$')
@@ -177,6 +132,7 @@ public class Home {
     }
 
     public void SortByFunctionality(String selection) throws InterruptedException {
+
         if (selection.contains("Name")) {
             getproductDetail = getProductTitle;
         }

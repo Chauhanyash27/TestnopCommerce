@@ -5,6 +5,7 @@ import Utility.Base;
 import org.testng.annotations.Test;
 
 public class NC_006_MyAccount_VerifyMyAccountListNavigation extends Base {
+
     MyAccount obj_MyAccountNavigation;
 
     @Test

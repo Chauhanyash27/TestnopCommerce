@@ -28,7 +28,6 @@ public class Wishlist {
         this.driver = driver;
     }
 
-
     public void navigateToWishlistPage(){
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(addToWishlistIcon)).click().perform();
@@ -36,16 +35,18 @@ public class Wishlist {
     }
 
     public void wishlistItemDetails(){
+
      List<WebElement> WishlistTableHeadingsList = driver.findElements(wishlistTableHeadings);
      for(WebElement heading : WishlistTableHeadingsList){
          String ActualTableHeading = heading.getText();
          WishlistTableHeadings tableHeading=WishlistTableHeadings.valueOf(ActualTableHeading.replaceAll("[(). ]", ""));
          String ExpectedTableHeading = tableHeading.getWishlistTableHeadings();
          Assert.assertEquals(ActualTableHeading,ExpectedTableHeading);
-     }
+        }
     }
 
     public void totalPriceVaryingWithQuantity() {
+
         driver.findElement(QtyField).clear();
         Random random = new Random();
         int productQuantity = random.nextInt(2,10);
@@ -76,7 +77,5 @@ public class Wishlist {
      boolean titleVerification = false;
      if(driver.getTitle().contains("Shopping Cart")) titleVerification = true;
      Assert.assertTrue(titleVerification);
-
     }
-
 }

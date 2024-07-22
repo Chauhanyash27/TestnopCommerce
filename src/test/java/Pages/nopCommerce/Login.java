@@ -16,20 +16,13 @@ public class Login {
         this.driver = driver;
     }
 
-
     public void userLogin(String[] data) throws InterruptedException {
 
         driver.findElement(loginNavItem).click();
-
         driver.findElement(emailField).sendKeys(data[0]);
-
         driver.findElement(passwordField).sendKeys(data[1]);
-
         driver.findElement(loginButton).click();
-
-        Thread.sleep(2000);
-
+        Thread.sleep(1000);
         driver.findElement(logoutButton).click();
     }
-
 }

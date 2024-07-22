@@ -5,6 +5,7 @@ import Utility.Base;
 import org.testng.annotations.Test;
 
 public class NC_014_VerifyProductGettingAddedFromWishlistToCart extends Base {
+
     Wishlist obj_WishlistToCart;
 
     @Test
